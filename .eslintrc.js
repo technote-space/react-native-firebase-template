@@ -27,8 +27,11 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   rules: {
     'react/react-in-jsx-scope': 'off',
+    'react/display-name': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
+    '@typescript-eslint/no-empty-interface': 'off',
     'camelcase': [
       'error',
       {
@@ -129,7 +132,12 @@ module.exports = {
     ],
     'react/prop-types': 'off',
     'sort-imports': 0,
-    'import/order': [2, {'alphabetize': {'order': 'asc'}}],
+    'import/order': [
+      2, {
+        'alphabetize': { 'order': 'asc' },
+        'groups': ['type', 'builtin', 'external', 'parent', 'sibling', 'index'],
+      },
+    ],
     '@typescript-eslint/consistent-type-imports': 'error',
   },
   overrides: [

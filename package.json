@@ -30,7 +30,7 @@
     ]
   },
   "scripts": {
-    "lint": "eslint --cache --ext .ts,.tsx",
+    "lint": "eslint --cache --ext .ts,.tsx .",
     "typecheck": "tsc --noEmit -p apps/client && tsc --noEmit -p apps/server/functions",
     "cover": "cross-env NODE_OPTIONS=--max_old_space_size=4096 jest --coverage --verbose --bail",
     "cover:client": "cross-env NODE_OPTIONS=--max_old_space_size=4096 jest --coverage --verbose --bail --selectProjects client",
