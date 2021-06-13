@@ -31,7 +31,7 @@
   },
   "scripts": {
     "lint": "eslint --cache --ext .ts,.tsx",
-    "typecheck": "tsc --noEmit -p apps/client && tsc --noEmit -p apps/server",
+    "typecheck": "tsc --noEmit -p apps/client && tsc --noEmit -p apps/server/functions",
     "cover": "cross-env NODE_OPTIONS=--max_old_space_size=4096 jest --coverage --verbose --bail",
     "cover:client": "cross-env NODE_OPTIONS=--max_old_space_size=4096 jest --coverage --verbose --bail --selectProjects client",
     "cover:server": "cross-env NODE_OPTIONS=--max_old_space_size=4096 jest --coverage --verbose --bail --selectProjects server",
@@ -41,10 +41,12 @@
   },
   "devDependencies": {
     "@jest/types": "^27.0.2",
-    "@react-native-community/eslint-config": "^2.0.0",
     "@types/jest": "^26.0.23",
+    "@typescript-eslint/eslint-plugin": "^4.22.1",
+    "@typescript-eslint/parser": "^4.22.1",
     "eslint": "^7.28.0",
     "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-react": "^7.23.2",
     "jest": "^27.0.4",
     "jest-circus": "^27.0.4",
     "jest-expo": "^41.0.0",
