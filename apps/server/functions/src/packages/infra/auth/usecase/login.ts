@@ -1,14 +1,14 @@
-import type { ILoginUseCase, DataType } from 'domain/auth/usecase/login';
+import type { DataType, ILoginUseCase } from 'domain/auth/usecase/login';
+import type { User } from 'domain/shared/auth/entity/user';
+import type { IUserFactory } from 'domain/shared/auth/factory/user';
 import type { IAuthService } from 'domain/shared/auth/service';
 import type { IFireStoreUserRepository } from 'domain/shared/firestore/repository/user';
-import type { IGitHubUserRepository } from 'domain/shared/github/repository/user';
-import type { IUserFactory } from 'domain/shared/auth/factory/user';
-import type { User } from 'domain/shared/auth/entity/user';
 import type { CallableContext } from 'domain/shared/functions/entity/context';
+import type { IGitHubUserRepository } from 'domain/shared/github/repository/user';
+import { AccessToken } from 'domain/shared/github/value/accessToken';
 import { CallUseCase } from 'infra/shared/functions/entity/usecase';
 import fetch from 'node-fetch';
-import { singleton, inject } from 'tsyringe';
-import { AccessToken } from 'domain/shared/github/value/accessToken';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class LoginUseCase extends CallUseCase<DataType> implements ILoginUseCase {
@@ -28,7 +28,7 @@ export class LoginUseCase extends CallUseCase<DataType> implements ILoginUseCase
       `https://github.com/login/oauth/access_token?client_id=${clientId}&client_secret=${clientSecret}&code=${code}&state=${state}`,
       { method: 'POST', headers: { Accept: 'application/json' } },
     );
-    const json = await response.json() as { access_token: string };
+    const json = await response.json() as { 'access_token': string };
 
     return AccessToken.create(json.access_token);
   }
@@ -37,6 +37,7 @@ export class LoginUseCase extends CallUseCase<DataType> implements ILoginUseCase
     return this.userFactory.fromGitHubUser(await this.githubUserRepository.find(accessToken));
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public async callHandler(data: DataType, context: CallableContext) {
     const accessToken = await LoginUseCase.getAccessToken(data.code, data.state);
     const user = await this.getUser(accessToken);

@@ -1,8 +1,8 @@
-import type { IFireStoreRepoRepository } from 'domain/shared/firestore/repository/repo';
-import type { IFireStoreRepoBaseRepository } from 'domain/shared/firestore/repository/base/repo';
 import type { UserId } from 'domain/shared/auth/value/userId';
 import type { Repo } from 'domain/shared/firestore/entity/repo';
-import { singleton, inject } from 'tsyringe';
+import type { IFireStoreRepoBaseRepository } from 'domain/shared/firestore/repository/base/repo';
+import type { IFireStoreRepoRepository } from 'domain/shared/firestore/repository/repo';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class FireStoreRepoRepository implements IFireStoreRepoRepository {

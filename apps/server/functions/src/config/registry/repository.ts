@@ -1,2 +1,2 @@
-import './repository/github';
 import './repository/firestore';
+import './repository/github';

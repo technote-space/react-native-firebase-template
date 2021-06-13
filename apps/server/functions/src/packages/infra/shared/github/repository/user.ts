@@ -1,8 +1,8 @@
+import type { User } from 'domain/shared/github/entity/user';
 import type { IGitHubUserRepository } from 'domain/shared/github/repository/user';
 import type { IOctokitService } from 'domain/shared/github/service/octokit';
-import type { User } from 'domain/shared/github/entity/user';
 import type { AccessToken } from 'domain/shared/github/value/accessToken';
-import { singleton, inject } from 'tsyringe';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class GitHubUserRepository implements IGitHubUserRepository {

@@ -1,19 +1,19 @@
-import { container } from 'tsyringe';
+import { DeviceService } from 'infra/shared/app/service/device';
+import { NotificationService } from 'infra/shared/app/service/notification';
+import { ResourceService } from 'infra/shared/app/service/resource';
 import { RootService } from 'infra/shared/app/service/root';
 import { ScreenService } from 'infra/shared/app/service/screen';
-import { NotificationService } from 'infra/shared/app/service/notification';
+import { StateService } from 'infra/shared/app/service/state';
 import { UpdateService } from 'infra/shared/app/service/update';
 import { AuthService } from 'infra/shared/auth/service';
-import { LoggerService } from 'infra/shared/logger/service/inidex';
-import { ResourceService } from 'infra/shared/app/service/resource';
-import { StateService } from 'infra/shared/app/service/state';
-import { DeviceService } from 'infra/shared/app/service/device';
 import { FunctionsService } from 'infra/shared/functions/service';
-import { StoreFactory } from 'infra/shared/store/factory';
 import { LoadingService } from 'infra/shared/loading/service';
 import { LoadingComponentService } from 'infra/shared/loading/service/component';
+import { LoggerService } from 'infra/shared/logger/service/inidex';
 import { NavigatorService } from 'infra/shared/navigator/service';
+import { StoreFactory } from 'infra/shared/store/factory';
 import { ThemeService } from 'infra/shared/theme/service';
+import { container } from 'tsyringe';
 
 container.registerSingleton('IRootService', RootService);
 container.registerSingleton('IScreenService', ScreenService);

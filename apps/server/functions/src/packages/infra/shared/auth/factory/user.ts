@@ -1,12 +1,12 @@
 import type { User } from 'domain/shared/auth/entity/user';
-import type { User as GitHubUser } from 'domain/shared/github/entity/user';
+import type { IUserFactory } from 'domain/shared/auth/factory/user';
 import type { User as StoredUser } from 'domain/shared/firestore/entity/user';
-import { UserId } from 'domain/shared/auth/value/userId';
-import { UserNumber } from 'domain/shared/auth/value/userNumber';
+import type { User as GitHubUser } from 'domain/shared/github/entity/user';
 import { Avatar } from 'domain/shared/auth/value/avatar';
+import { UserId } from 'domain/shared/auth/value/userId';
 import { UserName } from 'domain/shared/auth/value/userName';
+import { UserNumber } from 'domain/shared/auth/value/userNumber';
 import { AccessToken } from 'domain/shared/github/value/accessToken';
-import { IUserFactory } from 'domain/shared/auth/factory/user';
 
 export class UserFactory implements IUserFactory {
   public fromGitHubUser(value: GitHubUser): User {

@@ -1,6 +1,6 @@
 import type { IValue } from 'domain/shared/value';
-import isURL from 'validator/lib/isURL';
 import { InvalidValueException } from 'domain/shared/value/exception/invalidValue';
+import isURL from 'validator/lib/isURL';
 
 export class Url implements IValue<string> {
   private url: string;

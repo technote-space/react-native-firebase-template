@@ -1,4 +1,4 @@
-import Auth from 'firebase-admin/lib/auth';
+import type Auth from 'firebase-admin/lib/auth';
 
 export interface IAdminFactory {
   firestore(): FirebaseFirestore.Firestore;

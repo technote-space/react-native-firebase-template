@@ -1,5 +1,5 @@
 import type { UserResult } from 'domain/shared/auth/entity/result';
-import type { IContext, Dispatch } from 'domain/shared/store/entity/context';
+import type { Dispatch, IContext } from 'domain/shared/store/entity/context';
 
 export type StoreContext = {
   user: UserResult;

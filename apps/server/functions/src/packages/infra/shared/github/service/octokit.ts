@@ -1,7 +1,7 @@
-import type { IOctokitService, Options, Response } from 'domain/shared/github/service/octokit';
-import type { AccessToken } from 'domain/shared/github/value/accessToken';
 import type { Route } from '@octokit/types/dist-types/Route';
 import type { Endpoints } from '@octokit/types/dist-types/generated/Endpoints';
+import type { IOctokitService, Options, Response } from 'domain/shared/github/service/octokit';
+import type { AccessToken } from 'domain/shared/github/value/accessToken';
 import { Octokit } from '@octokit/rest';
 
 export class OctokitService implements IOctokitService {

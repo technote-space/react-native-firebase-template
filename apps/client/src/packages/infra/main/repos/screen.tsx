@@ -1,12 +1,12 @@
+import type { ListRenderItemInfo } from 'React-native';
+import type { Repo } from 'domain/main/repos/entity/repo';
 import type { IReposScreen } from 'domain/main/repos/screen';
 import type { IAuthService } from 'domain/shared/auth/service';
 import type { IFunctionsService } from 'domain/shared/functions/service';
 import type { ILoadingService } from 'domain/shared/loading/service';
-import type { Repo } from 'domain/main/repos/entity/repo';
-import type { ListRenderItemInfo } from 'React-native';
-import React, { memo, useState, useEffect, useCallback, useRef } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
-import { Switch, Subheading, Title } from 'react-native-paper';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { FlatList, StyleSheet, View } from 'react-native';
+import { Subheading, Switch, Title } from 'react-native-paper';
 import { inject, singleton } from 'tsyringe';
 
 const styles = StyleSheet.create({
@@ -55,7 +55,7 @@ export class ReposScreen implements IReposScreen {
       const hasNext = useRef(true);
       const renderRepo = useCallback(({ item }: ListRenderItemInfo<Repo>) => {
         const handleValueChange = (value: boolean) => {
-          withLoading(async () => {
+          withLoading(async() => {
             setRepos(repos => repos.map(repo => repo.id === item.id ? { ...repo, isEnabled: value } : repo));
             await this.functionsService.call(value ? 'onSelect' : 'offSelect', {
               repo: item,
@@ -91,7 +91,7 @@ export class ReposScreen implements IReposScreen {
       }, [page, hasNext.current, isLoading]);
 
       useEffect(() => {
-        (async () => {
+        (async() => {
           try {
             setIsLoading(true);
             const newRepos = await this.functionsService.call<Repo[]>('getUserRepos', { page: page ?? 1 });

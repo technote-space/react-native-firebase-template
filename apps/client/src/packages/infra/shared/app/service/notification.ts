@@ -1,10 +1,10 @@
-import type { INotificationService } from 'domain/shared/app/service/notification';
+import type { Subscription } from '@unimodules/core';
 import type { IDeviceService } from 'domain/shared/app/service/device';
+import type { INotificationService } from 'domain/shared/app/service/notification';
 import type { ILoggerService } from 'domain/shared/logger/service';
-import { Subscription } from '@unimodules/core';
 import * as Notifications from 'expo-notifications';
-import { singleton, inject } from 'tsyringe';
 import { AppState } from 'react-native';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class NotificationService implements INotificationService {
@@ -19,7 +19,7 @@ export class NotificationService implements INotificationService {
     }
 
     Notifications.setNotificationHandler({
-      handleNotification: async () => ({
+      handleNotification: async() => ({
         shouldShowAlert: true,
         shouldPlaySound: false,
         shouldSetBadge: false,

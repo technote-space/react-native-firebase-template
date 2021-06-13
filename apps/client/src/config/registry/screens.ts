@@ -1,10 +1,10 @@
 import type { NavigatorSetting } from 'domain/shared/navigator/entity/navigator';
-import { container } from 'tsyringe';
-import { SplashScreen } from 'infra/splash/screen';
 import { LoginScreen } from 'infra/login/screen';
 import { AccountScreen } from 'infra/main/account/screen';
 import { ReposScreen } from 'infra/main/repos/screen';
 import { SettingScreen } from 'infra/main/setting/screen';
+import { SplashScreen } from 'infra/splash/screen';
+import { container } from 'tsyringe';
 
 container.registerSingleton('ISplashScreen', SplashScreen);
 container.registerSingleton('ILoginScreen', LoginScreen);

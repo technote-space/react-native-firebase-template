@@ -1,10 +1,10 @@
+import type { IUserMapper } from 'domain/auth/mapper/user';
 import type { IGetUserUseCase } from 'domain/auth/usecase/getUser';
 import type { IAuthService } from 'domain/shared/auth/service';
 import type { AuthedCallableContext } from 'domain/shared/functions/entity/context';
-import { AuthedCallUseCase } from 'infra/shared/functions/entity/usecase';
 import { UserId } from 'domain/shared/auth/value/userId';
-import { singleton, inject } from 'tsyringe';
-import { IUserMapper } from 'domain/auth/mapper/user';
+import { AuthedCallUseCase } from 'infra/shared/functions/entity/usecase';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class GetUserUseCase extends AuthedCallUseCase implements IGetUserUseCase {

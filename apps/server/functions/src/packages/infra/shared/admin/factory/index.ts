@@ -1,7 +1,7 @@
 import type { IAdminFactory } from 'domain/shared/admin/factory';
-import Auth from 'firebase-admin/lib/auth';
+import type Auth from 'firebase-admin/lib/auth';
 import * as admin from 'firebase-admin';
-import { singleton, inject } from 'tsyringe';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class AdminFactory implements IAdminFactory {
@@ -9,7 +9,9 @@ export class AdminFactory implements IAdminFactory {
   private readonly __auth: Auth.auth.Auth;
 
   public constructor(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     @inject('firebase.config') private config: Record<string, any>,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     @inject('firebase.service.account') private serviceAccount: Record<string, any>,
   ) {
     if (!admin.apps.length) {

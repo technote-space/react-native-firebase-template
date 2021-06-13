@@ -1,5 +1,5 @@
 import type { IComponentService } from 'domain/shared/component/service';
-import type { VFC, PropsWithChildren, ReactElement, ReactNode } from 'react';
+import type { PropsWithChildren, ReactElement, ReactNode, VFC } from 'react';
 import React from 'react';
 
 export abstract class ComponentService<P = {}> implements IComponentService<P> {
@@ -12,6 +12,7 @@ export abstract class ComponentService<P = {}> implements IComponentService<P> {
   protected abstract getComponent(): VFC<P>;
 
   public render(props: P, children?: ReactNode): ReactElement {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const Component = this.__component as VFC<PropsWithChildren<any>>;
     return <Component {...props}>
       {children}

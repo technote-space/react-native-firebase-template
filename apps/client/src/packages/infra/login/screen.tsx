@@ -2,7 +2,7 @@ import type { ILoginScreen } from 'domain/login/screen';
 import type { IAuthService } from 'domain/shared/auth/service';
 import React, { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { singleton, inject } from 'tsyringe';
+import { inject, singleton } from 'tsyringe';
 
 const styles = StyleSheet.create({
   container: {

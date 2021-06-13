@@ -1,24 +1,23 @@
-import type { IAuthService } from 'domain/shared/auth/service';
-import type { IFunctionsService } from 'domain/shared/functions/service';
-import type { ILoadingService } from 'domain/shared/loading/service';
 import type { INotificationService } from 'domain/shared/app/service/notification';
-import type { ILoggerService } from 'domain/shared/logger/service';
+import type { LogoutCallback } from 'domain/shared/auth/entity/callback';
 import type { IAuthContext } from 'domain/shared/auth/entity/context';
-import type { ILoadingContext } from 'domain/shared/loading/entity/context';
+import type { GitHubConfig } from 'domain/shared/auth/entity/oauth';
 import type { UserResult } from 'domain/shared/auth/entity/result';
 import type { User } from 'domain/shared/auth/entity/user';
-import type { LogoutCallback } from 'domain/shared/auth/entity/callback';
-import type { GitHubConfig } from 'domain/shared/auth/entity/oauth';
-import React, { useEffect, useCallback, useMemo } from 'react';
-import firebase from 'firebase';
-import * as WebBrowser from 'expo-web-browser';
-import { useAuthRequest, makeRedirectUri } from 'expo-auth-session';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { View } from 'react-native';
-import { Button } from 'react-native-paper';
-import { StyleSheet, Platform } from 'react-native';
+import type { IAuthService } from 'domain/shared/auth/service';
+import type { IFunctionsService } from 'domain/shared/functions/service';
+import type { ILoadingContext } from 'domain/shared/loading/entity/context';
+import type { ILoadingService } from 'domain/shared/loading/service';
+import type { ILoggerService } from 'domain/shared/logger/service';
+import type firebase from 'firebase';
 import { useDispatch } from 'domain/shared/store/entity/context';
-import { singleton, inject } from 'tsyringe';
+import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
+import * as WebBrowser from 'expo-web-browser';
+import React, { useCallback, useEffect, useMemo } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Platform, StyleSheet, View } from 'react-native';
+import { Button } from 'react-native-paper';
+import { inject, singleton } from 'tsyringe';
 
 const styles = StyleSheet.create({
   wrap: {
@@ -89,8 +88,8 @@ export class AuthService implements IAuthService {
 
       // GitHub からのレスポンスが成功の場合、functions の login を呼び出してログイン処理を実行
       // 帰ってきた token で firebase にログイン
-      (async () => {
-        await withLoading(async () => {
+      (async() => {
+        await withLoading(async() => {
           const { token } = await this.functionsService.call<{ token: string }>('login', {
             code: response.params.code,
             state: request?.state,
@@ -108,8 +107,8 @@ export class AuthService implements IAuthService {
 
       if (firebaseAuth?.uid && !user.isLoggedIn) {
         // firebase にログインしている場合、getUser でユーザー情報取得
-        (async () => {
-          await withLoading(async () => {
+        (async() => {
+          await withLoading(async() => {
             const user = await this.functionsService.call<User | null>('getUser');
             this.loggerService.debug(user);
 
@@ -138,7 +137,7 @@ export class AuthService implements IAuthService {
   public useLogout(): LogoutCallback {
     const dispatch = useDispatch();
     const [firebaseAuth] = useAuthState(this.auth);
-    return useCallback(async () => {
+    return useCallback(async() => {
       if (firebaseAuth?.uid) {
         await this.notificationService.unregister(firebaseAuth.uid);
         await this.auth.signOut();

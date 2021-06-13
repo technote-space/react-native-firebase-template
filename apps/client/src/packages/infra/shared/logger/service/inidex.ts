@@ -1,6 +1,7 @@
-import type { ILoggerService } from 'domain/shared/logger/service';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { IDeviceService } from 'domain/shared/app/service/device';
-import { singleton, inject } from 'tsyringe';
+import type { ILoggerService } from 'domain/shared/logger/service';
+import { inject, singleton } from 'tsyringe';
 
 type CallerInfo = Array<string>;
 
@@ -24,7 +25,7 @@ export class LoggerService implements ILoggerService {
       Error.stackTraceLimit = depth + 1;
       Error.captureStackTrace(this, this.getCaller);
 
-      Error.prepareStackTrace = function (_, stack) {
+      Error.prepareStackTrace = function(_, stack) {
         Array.from({ length: depth >= stack.length - 1 ? stack.length - 1 : depth }, (_, index) => index + 1).forEach(index => {
           const caller = stack[index];
           callerInfo.push(caller.getFunctionName() ?? '[anonymous]');

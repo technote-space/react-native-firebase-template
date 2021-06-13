@@ -1,15 +1,15 @@
-import type { VFC } from 'react';
-import type { InitialProps } from 'expo/build/launch/withExpoRoot.types';
-import type { IRootService } from 'domain/shared/app/service/root';
-import type { IResourceService } from 'domain/shared/app/service/resource';
-import type { IStateService } from 'domain/shared/app/service/state';
 import type { INotificationService } from 'domain/shared/app/service/notification';
-import type { IStoreFactory } from 'domain/shared/store/factory';
+import type { IResourceService } from 'domain/shared/app/service/resource';
+import type { IRootService } from 'domain/shared/app/service/root';
 import type { IScreenService } from 'domain/shared/app/service/screen';
+import type { IStateService } from 'domain/shared/app/service/state';
+import type { IStoreFactory } from 'domain/shared/store/factory';
+import type { InitialProps } from 'expo/build/launch/withExpoRoot.types';
+import type { VFC } from 'react';
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import React, { memo, useEffect } from 'react';
 import { AppState } from 'react-native';
-import { ActionSheetProvider } from '@expo/react-native-action-sheet';
-import { singleton, inject } from 'tsyringe';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class RootService implements IRootService {
@@ -18,7 +18,7 @@ export class RootService implements IRootService {
     @inject('IResourceService') private resourceService: IResourceService,
     @inject('IStateService') private stateService: IStateService,
     @inject('INotificationService') private notificationService: INotificationService,
-    @inject('IStoreFactory') private storeFactory: IStoreFactory<never>,
+    @inject('IStoreFactory') private storeFactory: IStoreFactory,
   ) {
   }
 
@@ -27,7 +27,7 @@ export class RootService implements IRootService {
       const [isLoadingResource, LoadingResource] = this.resourceService.useResource();
 
       useEffect(() => {
-        (async () => {
+        (async() => {
           await this.stateService.setup();
         })();
         this.notificationService.setup();

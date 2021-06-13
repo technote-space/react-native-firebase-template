@@ -1,22 +1,14 @@
-import type { IStoreFactory, AnyAction, Reducer } from 'domain/shared/store/factory';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { IContext } from 'domain/shared/store/entity/context';
+import type { AnyAction, IStoreFactory, Reducer } from 'domain/shared/store/factory';
 import type { PropsWithChildren, VFC } from 'react';
-import React, { memo } from 'react';
+import { applyMiddleware, combineReducers, createLogger, createStore, PersistGate, persistReducer, persistStore, Provider } from 'domain/shared/store/factory';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  createStore,
-  combineReducers,
-  applyMiddleware,
-  Provider,
-  PersistGate,
-  persistReducer,
-  persistStore,
-  createLogger,
-} from 'domain/shared/store/factory';
-import { singleton, inject, container } from 'tsyringe';
+import React, { memo } from 'react';
+import { container, inject, singleton } from 'tsyringe';
 
 @singleton()
-export class StoreFactory<StoreContext extends Record<string, any>> implements IStoreFactory<StoreContext> {
+export class StoreFactory<StoreContext extends Record<string, any>> implements IStoreFactory {
   private readonly __provider: VFC<PropsWithChildren<{}>>;
 
   public constructor(

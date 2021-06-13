@@ -1,6 +1,6 @@
-import type { AppStateStatus } from 'react-native';
-import type { IUpdateService } from 'domain/shared/app/service/update';
 import type { IDeviceService } from 'domain/shared/app/service/device';
+import type { IUpdateService } from 'domain/shared/app/service/update';
+import type { AppStateStatus } from 'react-native';
 import * as Updates from 'expo-updates';
 import { Alert } from 'react-native';
 import { inject, singleton } from 'tsyringe';

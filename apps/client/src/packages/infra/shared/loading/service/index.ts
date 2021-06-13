@@ -1,8 +1,8 @@
-import type { ILoadingService } from 'domain/shared/loading/service';
 import type { ILoadingContext, LoadingProcess } from 'domain/shared/loading/entity/context';
-import { useCallback } from 'react';
+import type { ILoadingService } from 'domain/shared/loading/service';
 import { useDispatch } from 'domain/shared/store/entity/context';
-import { singleton, inject } from 'tsyringe';
+import { useCallback } from 'react';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class LoadingService implements ILoadingService {
@@ -19,7 +19,7 @@ export class LoadingService implements ILoadingService {
   public useLoading<T>(): (callback: () => Promise<T>, message?: string, identifier?: string) => Promise<T> {
     const dispatch = useDispatch();
 
-    return useCallback(async (callback, message, identifier) => {
+    return useCallback(async(callback, message, identifier) => {
       const id = identifier ?? LoadingService.generateRandomString();
       try {
         this.loadingContext.add(dispatch, id, message);

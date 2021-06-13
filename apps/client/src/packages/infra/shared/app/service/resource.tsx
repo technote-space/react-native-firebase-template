@@ -1,18 +1,15 @@
 import type { IResourceService } from 'domain/shared/app/service/resource';
-import React, { useState, useCallback } from 'react';
-import { singleton } from 'tsyringe';
-import * as Font from 'expo-font';
 import * as Icon from '@expo/vector-icons';
 import AppLoading from 'expo-app-loading';
+import * as Font from 'expo-font';
+import React, { useCallback, useState } from 'react';
+import { singleton } from 'tsyringe';
 
 @singleton()
 export class ResourceService implements IResourceService {
-  public constructor() {
-  }
-
   public useResource(): [boolean, (React.ReactElement | null)] {
     const [isLoading, setIsLoading] = useState(true);
-    const loadResources = useCallback(async () => {
+    const loadResources = useCallback(async() => {
       await Font.loadAsync({
         // This is the font that we are using for our tab bar
         ...Icon.Ionicons.font,

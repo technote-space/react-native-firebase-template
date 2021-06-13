@@ -1,8 +1,8 @@
 import type { MaterialBottomTabNavigationOptions } from '@react-navigation/material-bottom-tabs';
-import type { StackNavigationOptions } from '@react-navigation/stack';
-import type { IconName } from 'root/types';
-import type { StackNavigationConfig } from '@react-navigation/stack/src/types';
 import type { MaterialBottomTabNavigationConfig } from '@react-navigation/material-bottom-tabs/src/types';
+import type { StackNavigationOptions } from '@react-navigation/stack';
+import type { StackNavigationConfig } from '@react-navigation/stack/src/types';
+import type { IconName } from 'root/types';
 
 export type NavigatorItem = {
   name: string;

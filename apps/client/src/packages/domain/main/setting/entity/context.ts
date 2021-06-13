@@ -1,4 +1,4 @@
-import type { IContext, Dispatch } from 'domain/shared/store/entity/context';
+import type { Dispatch, IContext } from 'domain/shared/store/entity/context';
 
 export type StoreContext = {
   theme: { darkMode: boolean }

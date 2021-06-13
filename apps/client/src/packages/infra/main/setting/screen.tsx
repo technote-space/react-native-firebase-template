@@ -1,10 +1,10 @@
-import type { ISettingScreen } from 'domain/main/setting/screen';
 import type { ISettingContext } from 'domain/main/setting/entity/context';
+import type { ISettingScreen } from 'domain/main/setting/screen';
 import type { SettingsData } from 'react-native-settings-screen';
+import { useDispatch } from 'domain/shared/store/entity/context';
 import React, { memo, useCallback, useMemo } from 'react';
 import { Switch, useTheme } from 'react-native-paper';
 import { SettingsScreen } from 'react-native-settings-screen';
-import { useDispatch } from 'domain/shared/store/entity/context';
 import { inject, singleton } from 'tsyringe';
 
 @singleton()

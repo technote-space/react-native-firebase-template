@@ -1,9 +1,9 @@
-import type { IOnSelectUseCase, DataType } from 'domain/repo/usecase/onSelect';
 import type { IRepoRepository } from 'domain/repo/repository/repo';
+import type { DataType, IOnSelectUseCase } from 'domain/repo/usecase/onSelect';
 import type { AuthedCallableContext } from 'domain/shared/functions/entity/context';
 import { UserId } from 'domain/shared/auth/value/userId';
 import { AuthedCallUseCase } from 'infra/shared/functions/entity/usecase';
-import { singleton, inject } from 'tsyringe';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class OnSelectUseCase extends AuthedCallUseCase<DataType> implements IOnSelectUseCase {

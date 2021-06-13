@@ -1,5 +1,6 @@
-import type { IUseCase, ICallUseCase, IAuthedCallUseCase } from 'domain/shared/functions/entity/usecase';
-import { CallableContext, AuthedCallableContext } from 'domain/shared/functions/entity/context';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { AuthedCallableContext, CallableContext } from 'domain/shared/functions/entity/context';
+import type { IAuthedCallUseCase, ICallUseCase, IUseCase } from 'domain/shared/functions/entity/usecase';
 import type { CloudFunction, FunctionBuilder } from 'firebase-functions';
 import * as functions from 'firebase-functions';
 
@@ -17,7 +18,7 @@ export abstract class CallUseCase<DataType = never> extends UseCase implements I
   public abstract callHandler(data: DataType, context: CallableContext): Promise<any>;
 
   public get(): CloudFunction<any> {
-    return this.functions().https.onCall(async (data: any, context) => {
+    return this.functions().https.onCall(async(data: any, context) => {
       return this.callHandler(data, context);
     });
   }
@@ -27,7 +28,7 @@ export abstract class AuthedCallUseCase<DataType = never> extends UseCase implem
   public abstract callHandler(data: DataType, context: AuthedCallableContext): Promise<any>;
 
   public get(): CloudFunction<any> {
-    return this.functions().https.onCall(async (data: any, context) => {
+    return this.functions().https.onCall(async(data: any, context) => {
       if (!context.auth) {
         throw new Error();
       }

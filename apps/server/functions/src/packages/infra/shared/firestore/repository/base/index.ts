@@ -1,16 +1,7 @@
-import type { IFireStoreBaseRepository } from 'domain/shared/firestore/repository/base';
 import type { IAdminFactory } from 'domain/shared/admin/factory';
-import type {
-  FindManyArgs,
-  FindFirstArgs,
-  WhereOperator,
-  Where,
-  CollectionReference,
-  OrderByDirection,
-  Query,
-  CollectionFilter,
-} from 'domain/shared/firestore/entity/base/query';
+import type { CollectionFilter, CollectionReference, FindFirstArgs, FindManyArgs, OrderByDirection, Query, Where, WhereOperator } from 'domain/shared/firestore/entity/base/query';
 import type { DocumentSnapshot, QuerySnapshot } from 'domain/shared/firestore/entity/base/snapshot';
+import type { IFireStoreBaseRepository } from 'domain/shared/firestore/repository/base';
 
 export abstract class FireStoreBaseRepository<T> implements IFireStoreBaseRepository<T> {
   protected constructor(private adminFactory: IAdminFactory) {
@@ -34,6 +25,7 @@ export abstract class FireStoreBaseRepository<T> implements IFireStoreBaseReposi
     let query = this.getQuery(keys) as Query<T>;
     if (where) {
       Object.keys(where).forEach(key => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const filter = (where as { [key: string]: any })[key];
         if (typeof filter === 'object') {
           const op = Object.keys(filter)[0] as WhereOperator;
@@ -87,6 +79,7 @@ export abstract class FireStoreBaseRepository<T> implements IFireStoreBaseReposi
     await this.getQuery(keys).doc(key).set(data);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public async update(keys: string[], key: string, data: Record<string, any>): Promise<void> {
     await this.getQuery(keys).doc(key).update(data);
   }
@@ -96,7 +89,7 @@ export abstract class FireStoreBaseRepository<T> implements IFireStoreBaseReposi
   }
 
   public watch(keys: string[], key: string, callback: (snapshot: DocumentSnapshot<T>) => Promise<void>) {
-    this.getQuery(keys).doc(key).onSnapshot(async (snapshot) => {
+    this.getQuery(keys).doc(key).onSnapshot(async(snapshot) => {
       await callback(snapshot as DocumentSnapshot<T>);
     });
   }

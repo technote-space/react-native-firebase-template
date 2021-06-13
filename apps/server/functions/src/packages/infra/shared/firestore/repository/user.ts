@@ -1,9 +1,9 @@
-import type { IFireStoreUserRepository } from 'domain/shared/firestore/repository/user';
-import type { IFireStoreUserBaseRepository } from 'domain/shared/firestore/repository/base/user';
-import type { IUserFactory } from 'domain/shared/auth/factory/user';
 import type { User } from 'domain/shared/auth/entity/user';
+import type { IUserFactory } from 'domain/shared/auth/factory/user';
 import type { UserId } from 'domain/shared/auth/value/userId';
-import { singleton, inject } from 'tsyringe';
+import type { IFireStoreUserBaseRepository } from 'domain/shared/firestore/repository/base/user';
+import type { IFireStoreUserRepository } from 'domain/shared/firestore/repository/user';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class FireStoreUserRepository implements IFireStoreUserRepository {

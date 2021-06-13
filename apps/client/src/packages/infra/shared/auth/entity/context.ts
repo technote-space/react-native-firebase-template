@@ -1,6 +1,6 @@
 import type { IAuthContext, StoreContext } from 'domain/shared/auth/entity/context';
 import type { UserResult } from 'domain/shared/auth/entity/result';
-import type { Reducer, Dispatch } from 'domain/shared/store/entity/context';
+import type { Dispatch, Reducer } from 'domain/shared/store/entity/context';
 import { useSelector } from 'domain/shared/store/entity/context';
 import { singleton } from 'tsyringe';
 

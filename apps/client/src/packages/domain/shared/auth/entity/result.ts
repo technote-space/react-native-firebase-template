@@ -1,5 +1,5 @@
-import type { ReactElement } from 'react';
 import type { User } from 'domain/shared/auth/entity/user';
+import type { ReactElement } from 'react';
 
 export type UserResult = {
   user: User;

@@ -1,5 +1,5 @@
 import type { Data } from 'domain/shared/firestore/entity/base/data';
-import firebase from 'firebase';
+import type firebase from 'firebase';
 
 type Enumerable<T> = T | Array<T>;
 export type WhereOperator =
@@ -24,6 +24,7 @@ export type DocumentReference<T> = firebase.firestore.DocumentReference<T>;
 export type OrderByDirection = firebase.firestore.OrderByDirection;
 export type Query<T> = firebase.firestore.Query<T>;
 export type QueryDocumentSnapshot<T> = firebase.firestore.QueryDocumentSnapshot<T>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type CollectionFilter<T> = (ref: CollectionReference<any>) => CollectionReference<T>;
 
 export type FindManyArgs<T extends Data> = {

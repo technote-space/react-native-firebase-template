@@ -1,7 +1,7 @@
-import type { CloudFunction } from 'firebase-functions';
 import type { IEntryService } from 'domain/shared/app/service/entry';
 import type { IFunctionsFactory } from 'domain/shared/functions/factory';
-import { singleton, inject } from 'tsyringe';
+import type { CloudFunction } from 'firebase-functions';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class EntryService implements IEntryService {
@@ -10,6 +10,7 @@ export class EntryService implements IEntryService {
   ) {
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public handle(name?: string): Record<string, CloudFunction<any>> {
     if (name) {
       return { name: this.functionsFactory.resolve(name).get() };

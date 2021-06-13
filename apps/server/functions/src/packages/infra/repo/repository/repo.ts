@@ -1,11 +1,11 @@
-import type { IRepoRepository } from 'domain/repo/repository/repo';
-import type { IGitHubRepoRepository } from 'domain/shared/github/repository/repo';
-import type { IFireStoreRepoRepository } from 'domain/shared/firestore/repository/repo';
-import type { AccessToken } from 'domain/shared/github/value/accessToken';
 import type { Repo, RepoDto } from 'domain/repo/entity/repo';
+import type { IRepoRepository } from 'domain/repo/repository/repo';
 import type { UserId } from 'domain/shared/auth/value/userId';
+import type { IFireStoreRepoRepository } from 'domain/shared/firestore/repository/repo';
+import type { IGitHubRepoRepository } from 'domain/shared/github/repository/repo';
+import type { AccessToken } from 'domain/shared/github/value/accessToken';
 import { RepoId } from 'domain/repo/value/repoId';
-import { singleton, inject } from 'tsyringe';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class RepoRepository implements IRepoRepository {

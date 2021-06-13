@@ -1,8 +1,8 @@
-import { container } from 'tsyringe';
+import Constants from 'expo-constants';
 import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/functions';
-import Constants from 'expo-constants';
+import { container } from 'tsyringe';
 
 firebase.initializeApp(Constants.manifest.web?.config?.firebase!);
 if (__DEV__) {

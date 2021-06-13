@@ -1,8 +1,8 @@
+import type { INotificationService } from 'domain/shared/app/service/notification';
 import type { IStateService } from 'domain/shared/app/service/state';
 import type { IUpdateService } from 'domain/shared/app/service/update';
-import type { INotificationService } from 'domain/shared/app/service/notification';
 import type { AppStateStatus } from 'react-native';
-import { singleton, inject } from 'tsyringe';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class StateService implements IStateService {

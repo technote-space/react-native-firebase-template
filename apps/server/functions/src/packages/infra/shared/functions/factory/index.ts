@@ -1,6 +1,6 @@
-import type { IFunctionsFactory } from 'domain/shared/functions/factory';
 import type { IFunctions } from 'domain/shared/functions/entity';
-import { singleton, inject, container } from 'tsyringe';
+import type { IFunctionsFactory } from 'domain/shared/functions/factory';
+import { container, inject, singleton } from 'tsyringe';
 
 @singleton()
 export class FunctionsFactory implements IFunctionsFactory {

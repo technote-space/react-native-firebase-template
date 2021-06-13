@@ -1,10 +1,10 @@
-import type { ILoadingComponentService } from 'domain/shared/loading/service/component';
 import type { ILoadingContext } from 'domain/shared/loading/entity/context';
-import React, { memo } from 'react';
+import type { ILoadingComponentService } from 'domain/shared/loading/service/component';
 import { ComponentService } from 'infra/shared/component/service';
+import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { ActivityIndicator, Modal, Portal, ProgressBar, Text } from 'react-native-paper';
-import { singleton, inject } from 'tsyringe';
+import { inject, singleton } from 'tsyringe';
 
 const styles = StyleSheet.create({
   text: {

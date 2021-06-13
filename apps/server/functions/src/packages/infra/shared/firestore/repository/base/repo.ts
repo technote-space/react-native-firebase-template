@@ -1,9 +1,9 @@
-import type { IFireStoreRepoBaseRepository } from 'domain/shared/firestore/repository/base/repo';
 import type { IAdminFactory } from 'domain/shared/admin/factory';
-import type { Repo } from 'domain/shared/firestore/entity/repo';
 import type { CollectionFilter, CollectionReference } from 'domain/shared/firestore/entity/base/query';
+import type { Repo } from 'domain/shared/firestore/entity/repo';
+import type { IFireStoreRepoBaseRepository } from 'domain/shared/firestore/repository/base/repo';
 import { FireStoreBaseRepository } from 'infra/shared/firestore/repository/base/index';
-import { singleton, inject } from 'tsyringe';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class FireStoreRepoBaseRepository extends FireStoreBaseRepository<Repo> implements IFireStoreRepoBaseRepository {

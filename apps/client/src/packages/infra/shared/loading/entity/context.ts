@@ -1,5 +1,5 @@
 import type { ILoadingContext, LoadingProcess, StoreContext } from 'domain/shared/loading/entity/context';
-import type { Reducer, Dispatch } from 'domain/shared/store/entity/context';
+import type { Dispatch, Reducer } from 'domain/shared/store/entity/context';
 import { useSelector } from 'domain/shared/store/entity/context';
 import { singleton } from 'tsyringe';
 

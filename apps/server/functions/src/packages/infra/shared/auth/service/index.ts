@@ -1,9 +1,9 @@
-import type { IAuthService, UserResult } from 'domain/shared/auth/service';
 import type { IAdminFactory } from 'domain/shared/admin/factory';
-import type { IFireStoreUserRepository } from 'domain/shared/firestore/repository/user';
+import type { IAuthService, UserResult } from 'domain/shared/auth/service';
 import type { UserId } from 'domain/shared/auth/value/userId';
+import type { IFireStoreUserRepository } from 'domain/shared/firestore/repository/user';
 import { AccessToken } from 'domain/shared/github/value/accessToken';
-import { singleton, inject } from 'tsyringe';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class AuthService implements IAuthService {

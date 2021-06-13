@@ -1,7 +1,7 @@
-import { container } from 'tsyringe';
 import { UserMapper } from 'infra/auth/mapper/user';
-import { LoginUseCase } from 'infra/auth/usecase/login';
 import { GetUserUseCase } from 'infra/auth/usecase/getUser';
+import { LoginUseCase } from 'infra/auth/usecase/login';
+import { container } from 'tsyringe';
 
 container.registerSingleton('IUserMapper', UserMapper);
 container.registerSingleton('ILoginUseCase', LoginUseCase);

@@ -1,7 +1,7 @@
 import type { ISettingContext, StoreContext } from 'domain/main/setting/entity/context';
-import type { Reducer, Dispatch } from 'domain/shared/store/entity/context';
-import { Appearance } from 'react-native';
+import type { Dispatch, Reducer } from 'domain/shared/store/entity/context';
 import { useSelector } from 'domain/shared/store/entity/context';
+import { Appearance } from 'react-native';
 import { singleton } from 'tsyringe';
 
 @singleton()

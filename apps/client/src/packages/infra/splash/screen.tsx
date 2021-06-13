@@ -1,6 +1,6 @@
 import type { ISplashScreen } from 'domain/splash/screen';
 import React, { memo } from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { Splash } from 'root/assets/images';
 import { singleton } from 'tsyringe';
 

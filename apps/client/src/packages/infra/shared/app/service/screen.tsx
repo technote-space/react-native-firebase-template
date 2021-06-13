@@ -1,16 +1,16 @@
+import type { ISettingContext } from 'domain/main/setting/entity/context';
 import type { IScreenService } from 'domain/shared/app/service/screen';
 import type { IAuthService } from 'domain/shared/auth/service';
-import type { INavigatorService } from 'domain/shared/navigator/service';
-import type { ILoggerService } from 'domain/shared/logger/service';
 import type { ILoadingComponentService } from 'domain/shared/loading/service/component';
-import type { ISettingContext } from 'domain/main/setting/entity/context';
+import type { ILoggerService } from 'domain/shared/logger/service';
+import type { INavigatorService } from 'domain/shared/navigator/service';
 import type { IThemeService } from 'domain/shared/theme/service';
-import React, { memo, useEffect, useRef } from 'react';
-import { ComponentService } from 'infra/shared/component/service';
 import { CommonActions, NavigationContainer } from '@react-navigation/native';
+import { ComponentService } from 'infra/shared/component/service';
+import React, { memo, useEffect, useRef } from 'react';
 import { StatusBar } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
-import { singleton, inject } from 'tsyringe';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class ScreenService extends ComponentService implements IScreenService {
@@ -29,6 +29,7 @@ export class ScreenService extends ComponentService implements IScreenService {
     const component = memo(() => {
       const userResult = this.authService.useUser();
       const routeNameRef = useRef();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const navigationRef = useRef<any>(null);
       const darkMode = this.settingContext.useDarkMode();
 
