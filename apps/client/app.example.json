@@ -1,0 +1,57 @@
+{
+  "expo": {
+    "scheme": "react-native-firebase-template",
+    "name": "React Native Firebase Template",
+    "slug": "react-native-firebase-template",
+    "currentFullName": "@anonymous/react-native-firebase-template",
+    "privacy": "public",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./src/assets/images/icon.png",
+    "splash": {
+      "image": "./src/assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "src/assets/**/*"
+    ],
+    "notification": {
+      "icon": "./src/assets/images/icon.png",
+      "color": "#01388B"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "web": {
+      "config": {
+        "firebase": {
+          "apiKey": "",
+          "authDomain": "",
+          "projectId": "",
+          "storageBucket": "",
+          "messagingSenderId": "",
+          "appId": "",
+          "measurementId": ""
+        },
+        "oauth": {
+          "github": {
+            "clientId": "",
+            "scopes": [
+              "read:user",
+              "repo"
+            ]
+          }
+        }
+      }
+    },
+    "description": "React Native Firebase Template"
+  }
+}

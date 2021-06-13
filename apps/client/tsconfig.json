@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "jsx": "react-native",
+    "skipLibCheck": true,
+    "strict": true,
+    "strictFunctionTypes": false,
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": "./",
+    "paths": {
+      "root/*": [
+        "./src/*"
+      ],
+      "assets/*": [
+        "./src/assets/*"
+      ],
+      "infra/*": [
+        "./src/packages/infra/*"
+      ],
+      "domain/*": [
+        "./src/packages/domain/*"
+      ]
+    }
+  },
+  "extends": "expo/tsconfig.base"
+}

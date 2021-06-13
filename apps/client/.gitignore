@@ -1,0 +1,13 @@
+node_modules/**/*
+.expo/*
+npm-debug.*
+*.jks
+*.p12
+*.key
+*.mobileprovision
+storybook-static
+.cache-loader
+__screenshots__
+public
+app*.json
+!app.example.json

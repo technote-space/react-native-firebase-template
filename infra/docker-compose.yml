@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  firebase:
+    build:
+      context: .
+      dockerfile: ./docker/firebase.dockerfile
+    container_name: firebase
+    volumes:
+      - ../apps/server:/opt/workspace:cached
+      - root-node-module:/opt/workspace/node_modules:cached
+      - functions-node-module:/opt/workspace/functions/node_modules:cached
+    ports:
+      - 4000:4000 # Emulator Suite UI
+      - 5000:5000 # Firebase Hosting
+      - 5001:5001 # Cloud Functions
+#      - 9000:9000 # Realtime Database
+#      - 9199:9199 # Cloud Storage
+      - 8080:8080 # Cloud Firestore
+      - 8085:8085 # Cloud Pub/Sub
+      - 9099:9099 # Auth
+    working_dir: /opt/workspace
+    command: bash
+    tty: true
+
+  maildev:
+    image: maildev/maildev
+    ports:
+      - "1080:80"
+      - "1025:25"
+
+volumes:
+  root-node-module:
+    driver: 'local'
+  functions-node-module:
+    driver: 'local'
