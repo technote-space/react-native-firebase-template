@@ -1,10 +1,10 @@
-import type { IAdminFactory } from 'domain/shared/admin/factory';
+import type { IAdminInjector } from 'domain/shared/admin/injector';
 import type Auth from 'firebase-admin/lib/auth';
 import * as admin from 'firebase-admin';
 import { inject, singleton } from 'tsyringe';
 
 @singleton()
-export class AdminFactory implements IAdminFactory {
+export class AdminInjector implements IAdminInjector {
   private readonly __firestore: FirebaseFirestore.Firestore;
   private readonly __auth: Auth.auth.Auth;
 

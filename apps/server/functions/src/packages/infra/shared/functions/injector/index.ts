@@ -1,9 +1,9 @@
 import type { IFunctions } from 'domain/shared/functions/entity';
-import type { IFunctionsFactory } from 'domain/shared/functions/factory';
+import type { IFunctionsInjector } from 'domain/shared/functions/injector';
 import { container, inject, singleton } from 'tsyringe';
 
 @singleton()
-export class FunctionsFactory implements IFunctionsFactory {
+export class FunctionsInjector implements IFunctionsInjector {
   public constructor(
     @inject('functions') private functions: Record<string, string>,
   ) {

@@ -8,6 +8,6 @@ export { PersistGate } from 'redux-persist/integration/react';
 export { persistReducer, persistStore } from 'redux-persist';
 export { createLogger } from 'redux-logger';
 
-export interface IStoreFactory {
+export interface IStoreService {
   getStoreProvider(): VFC<PropsWithChildren<{}>>;
 }

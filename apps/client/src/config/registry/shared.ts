@@ -11,7 +11,7 @@ import { LoadingService } from 'infra/shared/loading/service';
 import { LoadingComponentService } from 'infra/shared/loading/service/component';
 import { LoggerService } from 'infra/shared/logger/service/inidex';
 import { NavigatorService } from 'infra/shared/navigator/service';
-import { StoreFactory } from 'infra/shared/store/factory';
+import { StoreService } from 'infra/shared/store/service';
 import { ThemeService } from 'infra/shared/theme/service';
 import { container } from 'tsyringe';
 
@@ -25,7 +25,7 @@ container.registerSingleton('IResourceService', ResourceService);
 container.registerSingleton('IStateService', StateService);
 container.registerSingleton('IDeviceService', DeviceService);
 container.registerSingleton('IFunctionsService', FunctionsService);
-container.registerSingleton('IStoreFactory', StoreFactory);
+container.registerSingleton('IStoreService', StoreService);
 container.registerSingleton('ILoadingService', LoadingService);
 container.registerSingleton('ILoadingComponentService', LoadingComponentService);
 container.registerSingleton('INavigatorService', NavigatorService);
