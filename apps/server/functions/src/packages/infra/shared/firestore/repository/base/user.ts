@@ -1,4 +1,4 @@
-import type { IAdminFactory } from 'domain/shared/admin/factory';
+import type { IAdminInjector } from 'domain/shared/admin/injector';
 import type { CollectionFilter } from 'domain/shared/firestore/entity/base/query';
 import type { User } from 'domain/shared/firestore/entity/user';
 import type { IFireStoreUserBaseRepository } from 'domain/shared/firestore/repository/base/user';
@@ -8,9 +8,9 @@ import { inject, singleton } from 'tsyringe';
 @singleton()
 export class FireStoreUserBaseRepository extends FireStoreBaseRepository<User> implements IFireStoreUserBaseRepository {
   public constructor(
-    @inject('IAdminFactory') adminFactory: IAdminFactory,
+    @inject('IAdminInjector') adminInjector: IAdminInjector,
   ) {
-    super(adminFactory);
+    super(adminInjector);
   }
 
   public table(): string {

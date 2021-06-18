@@ -1,4 +1,4 @@
-import type { IAdminFactory } from 'domain/shared/admin/factory';
+import type { IAdminInjector } from 'domain/shared/admin/injector';
 import type { IAuthService, UserResult } from 'domain/shared/auth/service';
 import type { UserId } from 'domain/shared/auth/value/userId';
 import type { IFireStoreUserRepository } from 'domain/shared/firestore/repository/user';
@@ -8,13 +8,13 @@ import { inject, singleton } from 'tsyringe';
 @singleton()
 export class AuthService implements IAuthService {
   public constructor(
-    @inject('IAdminFactory') private adminFactory: IAdminFactory,
+    @inject('IAdminInjector') private adminInjector: IAdminInjector,
     @inject('IFireStoreUserRepository') private fireStoreUserRepository: IFireStoreUserRepository,
   ) {
   }
 
   public async createToken(uid: UserId): Promise<AccessToken> {
-    return AccessToken.create(await this.adminFactory.auth().createCustomToken(uid.value()));
+    return AccessToken.create(await this.adminInjector.auth().createCustomToken(uid.value()));
   }
 
   public async getUser<Flag extends boolean>(uid: UserId, throwError?: Flag): Promise<UserResult<Flag>> {

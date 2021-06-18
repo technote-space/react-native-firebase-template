@@ -1,10 +1,10 @@
-import type { IAdminFactory } from 'domain/shared/admin/factory';
+import type { IAdminInjector } from 'domain/shared/admin/injector';
 import type { CollectionFilter, CollectionReference, FindFirstArgs, FindManyArgs, OrderByDirection, Query, Where, WhereOperator } from 'domain/shared/firestore/entity/base/query';
 import type { DocumentSnapshot, QuerySnapshot } from 'domain/shared/firestore/entity/base/snapshot';
 import type { IFireStoreBaseRepository } from 'domain/shared/firestore/repository/base';
 
 export abstract class FireStoreBaseRepository<T> implements IFireStoreBaseRepository<T> {
-  protected constructor(private adminFactory: IAdminFactory) {
+  protected constructor(private adminInjector: IAdminInjector) {
   }
 
   public abstract table(): string;
@@ -12,7 +12,7 @@ export abstract class FireStoreBaseRepository<T> implements IFireStoreBaseReposi
   public abstract filter(keys: string[]): CollectionFilter<T> | undefined;
 
   private getQuery(keys: string[]): CollectionReference<T> {
-    const ref = this.adminFactory.firestore().collection(this.table()) as unknown as CollectionReference<T>;
+    const ref = this.adminInjector.firestore().collection(this.table()) as unknown as CollectionReference<T>;
     const filter = this.filter(keys);
     if (filter) {
       return filter(ref);

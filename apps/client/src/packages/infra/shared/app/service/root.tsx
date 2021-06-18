@@ -3,7 +3,7 @@ import type { IResourceService } from 'domain/shared/app/service/resource';
 import type { IRootService } from 'domain/shared/app/service/root';
 import type { IScreenService } from 'domain/shared/app/service/screen';
 import type { IStateService } from 'domain/shared/app/service/state';
-import type { IStoreFactory } from 'domain/shared/store/factory';
+import type { IStoreService } from 'domain/shared/store/service';
 import type { InitialProps } from 'expo/build/launch/withExpoRoot.types';
 import type { VFC } from 'react';
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
@@ -18,7 +18,7 @@ export class RootService implements IRootService {
     @inject('IResourceService') private resourceService: IResourceService,
     @inject('IStateService') private stateService: IStateService,
     @inject('INotificationService') private notificationService: INotificationService,
-    @inject('IStoreFactory') private storeFactory: IStoreFactory,
+    @inject('IStoreService') private storeService: IStoreService,
   ) {
   }
 
@@ -39,7 +39,7 @@ export class RootService implements IRootService {
         };
       }, []);
 
-      const Provider = this.storeFactory.getStoreProvider();
+      const Provider = this.storeService.getStoreProvider();
       return <>
         {isLoadingResource && LoadingResource}
         {!isLoadingResource && <Provider>
