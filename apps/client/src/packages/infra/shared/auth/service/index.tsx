@@ -9,10 +9,11 @@ import type { IFunctionsService } from 'domain/shared/functions/service';
 import type { ILoadingContext } from 'domain/shared/loading/entity/context';
 import type { ILoadingService } from 'domain/shared/loading/service';
 import type { ILoggerService } from 'domain/shared/logger/service';
-import type firebase from 'firebase';
 import { useDispatch } from 'domain/shared/store/entity/context';
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session';
 import * as WebBrowser from 'expo-web-browser';
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import firebase from 'firebase/app';
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Platform, StyleSheet, View } from 'react-native';
