@@ -1,5 +1,7 @@
 import type { MaterialBottomTabNavigationOptions } from '@react-navigation/material-bottom-tabs';
 import type { MaterialBottomTabNavigationConfig } from '@react-navigation/material-bottom-tabs/src/types';
+import type { MaterialTopTabNavigationOptions } from '@react-navigation/material-top-tabs';
+import type { MaterialTopTabNavigationConfig } from '@react-navigation/material-top-tabs/src/types';
 import type { StackNavigationOptions } from '@react-navigation/stack';
 import type { StackNavigationConfig } from '@react-navigation/stack/src/types';
 import type { IScreenComponentService } from 'domain/shared/component/service/screen';
@@ -8,6 +10,7 @@ import type { INavigatorService } from 'domain/shared/navigator/service';
 import type { ComponentType } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ComponentService } from 'infra/shared/component/service';
 import React, { memo } from 'react';
@@ -31,7 +34,11 @@ export class NavigatorService extends ComponentService implements INavigatorServ
         return this.createStackNavigator(item.items, item.initialRouteName, item.config);
       }
 
-      return this.createBottomTabNavigator(item.items, item.initialRouteName, item.config);
+      if (item.type === 'bottom') {
+        return this.createBottomTabNavigator(item.items, item.initialRouteName, item.config);
+      }
+
+      return this.createTopTabNavigator(item.items, item.initialRouteName, item.config);
     }
 
     if (!(item.screen in this.__cache)) {
@@ -92,6 +99,33 @@ export class NavigatorService extends ComponentService implements INavigatorServ
           key={item.name}
           options={{
             ...NavigatorService.getOptions<MaterialBottomTabNavigationOptions>(item),
+            tabBarLabel: 'label' in item ? item.label : item.options?.title ?? item.name,
+            tabBarIcon: ({ color }) =>
+              <FontAwesome name={'icon' in item ? item.icon : 'bars'} color={color} />,
+          }}
+        />)}
+    </Tab.Navigator>;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private createTopTabNavigator(items: Array<NavigatorItem>, initialRouteName?: string, config?: MaterialTopTabNavigationConfig): ComponentType<any> {
+    const Tab = createMaterialTopTabNavigator();
+    const itemsWithComponent = items.map(item => ({
+      ...item,
+      component: this.createComponent(item),
+    }));
+
+    return () => <Tab.Navigator
+      {...config}
+      initialRouteName={initialRouteName ?? items[0].name}
+    >
+      {itemsWithComponent.map(item =>
+        <Tab.Screen
+          name={item.name}
+          component={item.component}
+          key={item.name}
+          options={{
+            ...NavigatorService.getOptions<MaterialTopTabNavigationOptions>(item),
             tabBarLabel: 'label' in item ? item.label : item.options?.title ?? item.name,
             tabBarIcon: ({ color }) =>
               <FontAwesome name={'icon' in item ? item.icon : 'bars'} color={color} />,
